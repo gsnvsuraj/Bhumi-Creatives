@@ -3,7 +3,7 @@
 <head>
 	<title>Reset OTP</title>
 
-	<link rel="stylesheet" type="text/css" href="styles/resetOtp.css">
+	<link rel="stylesheet" type="text/css" href="styles/reset.css">
 </head>
 <body>
 

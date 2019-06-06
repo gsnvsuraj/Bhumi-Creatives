@@ -71,7 +71,7 @@
 
 		 
 		<form class="log"  action="login.php" method="POST">
-			 <h2 class="faculty">LOGIN</h2>
+			 <h2 class="login">LOGIN</h2>
 		 
 			E-Mail ID : <input type="text" name="user" placeholder="Enter email" required><br><br>
 			Password : <input type="Password" name="pass" placeholder="Enter password" required><br><br>
