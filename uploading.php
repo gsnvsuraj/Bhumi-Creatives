@@ -5,44 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
-	<style type="text/css">
-		#top {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #333;
-}
-
-.topnav {
-  float: left;
-}
-
-.topnav a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-.topnav a:hover:not(.active) {
-  background-color: #111;
-}
-
-.active {
-  background-color: #4CAF50;
-}
-.innav{
-
-	display: inline-block;
-}
-
-.forms{
-    margin: 10px 50px;
-}
-
-	</style>
+	<link rel="stylesheet" type="text/css" href="styles/uploading.css">
 </head>
 
 <body>
@@ -211,6 +174,7 @@ if ($uploadOk == 0) {
         <p>
             <label>Tags</label>
             <input class="w3-input" type="text" name='tag' required />
+            (Separate different tags using commas)
         </p>
 
         <p>

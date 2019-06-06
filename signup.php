@@ -1,49 +1,8 @@
 <html>
 	<head>
-		<title>Log In</title>
+		<title>Sign Up</title>
 
-		<style type="text/css">
-			body{
-				background-image: url("https://images.fridaymagazine.ae/1_2138767/imagesList_0/1270494007_main.jpg");
-				background-repeat: no-repeat;
-				background-size: cover;
-			}
-
-			.log{
-				background-color: rgb(210,205,203,0.6);
-				text-align: center;
-				padding: 50px;
-				margin: 0 auto;
-				margin-top: 50px;
-				font-size: 20px;
-				width: 400px;
-				bottom : 300px;
-                border-radius: 30px;
-			}
-
-			.button{
-				background-color: #008CBA;
-				border: none;
-				color: white;
-				padding: 12px 28px;
-				text-align: center;
-				text-decoration: none;
-				display: inline-block;
-				font-size: 16px;
-				margin: 4px 2px;
-				cursor: pointer;
-			}
-			
-			.login{
-			    bottom : 270px ;
-			    color : #111111 ;
-				text-align: center;
-			} 
-			td{
-				padding:5px;
-			}
-		     			
-		</style>
+		<link rel="stylesheet" type="text/css" href="styles/signup.css">
 	</head>
 
 	<body>
@@ -54,6 +13,9 @@
 		    </center>
 		</div>
 		<?php
+			use PHPMailer\PHPMailer\PHPMailer;
+			use PHPMailer\PHPMailer\Exception;
+
 			if(isset($_POST['submit']))
 			{
 				$servername = "localhost";
@@ -116,11 +78,67 @@
 
    				  	if($flag==0)
    				  	{
-   				  		$q3="INSERT INTO ulogin VALUES('".$email."','".$pass."','".$user."')";
-   				  		if($conn->query($q3))
+   				  		do{
+    						$uni_id = rand(10,99);
+
+						    $first = $uni_id;
+						    $chars_to_do = 6 - strlen($uni_id);
+						    for ($i = 1; $i <= $chars_to_do; $i++){ 
+						        $first .= chr(rand(48,57)); 
+						    }
+
+						    $uid = $first;
+
+						    $sql = "SELECT * FROM ulogin WHERE uid='".$uid."';";
+						    $result = $conn->query($sql);
+
+						}while($result->num_rows > 0);
+
+   				  		$q3="INSERT INTO ulogin VALUES('".$email."','".$pass."','".$uid."','".$user."','no')";
+   				  		
+   				  		require 'PHPMailer/src/Exception.php';
+						require 'PHPMailer/src/PHPMailer.php';
+						require 'PHPMailer/src/SMTP.php';
+
+						// Instantiation and passing `true` enables exceptions
+						$mail = new PHPMailer(true); 
+
+						try {
+							$senderMail = "";			//add the sender mail
+							$senderPass = "";			//add the sender password
+
+							//$mail->SMTPDebug = 4;
+						    //Server settings
+						    $mail->isSMTP();                                            // Set mailer to use SMTP
+						    $mail->Host       = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+						    $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
+						    $mail->Username   = $senderMail;                     // SMTP username
+						    $mail->Password   = $senderPass;                               // SMTP password
+						    //$mail->SMTPSecure = 'ssl';                                  // Enable TLS encryption, `ssl` also accepted
+						    $mail->Port       = 587;                                    // TCP port to connect to
+
+						    //Recipients
+						    $mail->setFrom($senderMail, 'Uplabs');
+						    $mail->addAddress($email);     // Add a recipient
+						    $mail->addReplyTo($senderMail);
+
+						    // Content
+						    $mail->isHTML(true);                                  // Set email format to HTML
+						    $mail->Subject = 'Verify your Account';
+						    $message = "This mail is regarding the account verification you created at the Uplabs.<br>Click the link below to verify your account.<br><br>Click <a href='localhost/uplabs/verify.php?uid=".$uid."'>here</a>.<br><br><br>If this request was not made by you click <a href='localhost/uplabs/unverify.php?uid=".$uid."'>here</a>.";
+						    $mail->Body = wordwrap($message, 70);
+						    $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+						    $mail->send();
+						    
+						} catch (Exception $e) {
+						    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+						}
+
+						if($conn->query($q3))
    				  		{   
-   				  			$_SESSION["user"]=$user;
-   				  			header("location:projects.php");
+   				  			$_SESSION["user"] = $user;
+   				  			header("location:login.php");
    				  			exit();
    				  		}
 

@@ -4,57 +4,13 @@
 	<title>Image</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="styles/imgDisplay.css">
 
-	<style type="text/css">
-		#top {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #333;
-}
-
-.topnav {
-  float: left;
-}
-
-.topnav a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-.topnav a:hover:not(.active) {
-  background-color: #111;
-}
-
-.active {
-  background-color: #4CAF50;
-}
-		.disImg{
-			height: 400px;
-			width: 400px;
-		}
-
-		.button{
-				background-color: #4CAF50;
-				border: none;
-				color: white;
-				padding: 12px 28px;
-				text-align: center;
-				text-decoration: none;
-				display: inline-block;
-				font-size: 16px;
-				margin: 4px 2px;
-				cursor: pointer;
-			}
-	</style>
+	
 </head>
 <body>
 	<ul id="top">
-      <li class="topnav"><a class="active" href="projects.php">Home</a></li>
+      <li class="topnav"><a href="projects.php">Home</a></li>
       <li class="topnav"><a href="myProjects.php">My Projects</a></li>
     
     <li class="topnav"><a href="uploading.php">Upload</a></li>

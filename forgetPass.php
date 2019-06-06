@@ -2,34 +2,8 @@
 <html>
 <head>
 	<title>Forgot Password</title>
-
-	<style type="text/css">
-		.log{
-				background-color: rgb(210,205,203,0.6);
-				text-align: center;
-				padding: 50px;
-				margin: 0 auto;
-				margin-top: 50px;
-				font-size: 20px;
-				width: 400px;
-				bottom : 300px;
-                border-radius: 30px;
-			}
-
-			.button{
-				background-color: #008CBA;
-				border: none;
-				color: white;
-				padding: 12px 28px;
-				text-align: center;
-				text-decoration: none;
-				display: inline-block;
-				font-size: 16px;
-				margin: 4px 2px;
-				cursor: pointer;
-			}
-	</style>
-</head>
+    <link rel="stylesheet" href="styles/forgetPass.css">
+	</head>
 <body>
 
 	<?php
@@ -80,20 +54,22 @@
 				$mail = new PHPMailer(true); 
 
 				try {
+					$senderMail = "";			//add the sender mail
+					$senderPass = "";			//add the sender password
 					//$mail->SMTPDebug = 4;
 				    //Server settings
 				    $mail->isSMTP();                                            // Set mailer to use SMTP
 				    $mail->Host       = 'smtp.gmail.com';  // Specify main and backup SMTP servers
 				    $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-				    $mail->Username   = 'suraj.gsnv@gmail.com';                     // SMTP username
-				    $mail->Password   = 'Suraj224';                               // SMTP password
+				    $mail->Username   = $senderMail;                     // SMTP username
+					$mail->Password   = $senderPass;                               // SMTP password
 				    //$mail->SMTPSecure = 'ssl';                                  // Enable TLS encryption, `ssl` also accepted
-				    $mail->Port       = 25;                                    // TCP port to connect to
+				    $mail->Port       = 587;                                    // TCP port to connect to
 
 				    //Recipients
-				    $mail->setFrom('suraj.gsnv@gmail.com', 'Uplabs');
-				    $mail->addAddress($email);     // Add a recipient
-				    $mail->addReplyTo('suraj.gsnv@gmail.com');
+				    $mail->setFrom($senderMail, 'Uplabs');
+					$mail->addAddress($email);     // Add a recipient
+					$mail->addReplyTo($senderMail);
 
 				    // Content
 				    $mail->isHTML(true);                                  // Set email format to HTML

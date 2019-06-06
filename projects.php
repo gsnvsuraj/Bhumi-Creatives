@@ -5,45 +5,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
  	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
-	<style type="text/css">
-		.likes{
-		}
+	<link rel="stylesheet" type="text/css" href="styles/projects.css">
 
-		.projectImg{
-			height: 250px;
-			width: 250px;
-			padding: 10px;
-			cursor: zoom-in;
-		}
-
-		ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #333;
-}
-
-li {
-  float: left;
-}
-
-li a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-li a:hover:not(.active) {
-  background-color: #111;
-}
-
-.active {
-  background-color: #4CAF50;
-}
-	</style>
 </head>
 <body>
 	<ul>
@@ -91,13 +54,17 @@ li a:hover:not(.active) {
 				$url = $row["image"];
 				echo "<div class='w3-btn w3-col m4 l3'><div class='w3-display-container'><a onclick='redir()'><img name='".$title."' class='projectImg w3-hover-opacity' id='".$row['pid']."' src='".$url."' alt='Not able to display' /><div class='w3-display-topright w3-padding'>";
                 
-                $q1="SELECT * from likes where pid='".$row['pid']."'AND uname='".$user."';";
-                $rs1=$conn->query($q1);
+                $q1 = "SELECT * FROM likes WHERE pid='".$row['pid']."' AND uname='".$user."';";
+                $rs1 = $conn->query($q1);
+
+                $q2 = "SELECT count(uname) FROM likes WHERE pid='".$row['pid']."';";
+                $rs2 = $conn->query($q2);
+                $row2 = $rs2->fetch_assoc();
                 
                 if($rs1->num_rows !=0)
-                    echo "<button ><a href='like.php?desid=".$row['pid']."&status=1' style='text-decoration:none'><img src='https://banner2.kisspng.com/20180624/vaf/kisspng-facebook-like-button-social-media-youtube-fb-like-5b301a8bc72301.5391674615298791798157.jpg' height=20px class='likes'></a></button></div></div><br>";          
+                    echo "<button class='likebt' ><a href='like.php?desid=".$row['pid']."&status=1' style='text-decoration:none'><img src='images/liked.png' class='likes'> ".$row2['count(uname)']."</a></button></div></div><br>";          
                 else
-				    echo "<button ><a href='like.php?desid=".$row['pid']."&status=0' style='text-decoration:none'><img src='http://www.logospng.com/images/3/like-facebook-black-clipart-best-3881.png' height=20px class='likes'></a></button></div></div><br>";
+				    echo "<button class='unlikebt' ><a href='like.php?desid=".$row['pid']."&status=0' style='text-decoration:none'><img src='images/unlike.gif' class='likes changeImg'> ".$row2['count(uname)']."</a></button></div></div><br>";
 
 				echo "<center><b>".$title."<br>Tags </b>: ".$row['tags']."</center></a></div>";
 			}
@@ -112,6 +79,8 @@ li a:hover:not(.active) {
 		function redir() {
 			window.open('imgDisplay.php?pid='+event.srcElement.id,'_self');
 		}
+		
+		
 	</script>
 
 </body>

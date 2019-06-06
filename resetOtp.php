@@ -3,32 +3,7 @@
 <head>
 	<title>Reset OTP</title>
 
-	<style type="text/css">
-		.log{
-				background-color: rgb(210,205,203,0.6);
-				text-align: center;
-				padding: 50px;
-				margin: 0 auto;
-				margin-top: 50px;
-				font-size: 20px;
-				width: 400px;
-				bottom : 300px;
-                border-radius: 30px;
-			}
-
-			.button{
-				background-color: #008CBA;
-				border: none;
-				color: white;
-				padding: 12px 28px;
-				text-align: center;
-				text-decoration: none;
-				display: inline-block;
-				font-size: 16px;
-				margin: 4px 2px;
-				cursor: pointer;
-			}
-	</style>
+	<link rel="stylesheet" type="text/css" href="styles/resetOtp.css">
 </head>
 <body>
 

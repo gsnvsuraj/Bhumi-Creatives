@@ -5,48 +5,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
  	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
-	<style type="text/css">
-		ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #333;
-}
+ 	<link rel="stylesheet" type="text/css" href="styles/myProjects.css">
 
-li {
-  float: left;
-}
-
-li a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-li a:hover:not(.active) {
-  background-color: #111;
-}
-
-.active {
-  background-color: #4CAF50;
-}
-    
-        .projectImg{
-           height: 250px;
-			width: 250px;
-			padding: 10px;
-			cursor: zoom-in;
-		}
-
-		.projectImgApp{
-           height: 250px;
-			width: 250px;
-			padding: 10px;
-		}
-	</style>
 </head>
 <body>
 	<ul>

@@ -5,55 +5,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
  	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
-	<style type="text/css">
-		.projectImg{
-			height: 250px;
-			width: 250px;
-			padding: 10px;
-			cursor: pointer;
-		}
+	<link rel="stylesheet" type="text/css" href="styles/notificationAdmin.css">
 
-		ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #333;
-}
-
-li {
-  float: left;
-}
-
-li a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-li a:hover:not(.active) {
-  background-color: #111;
-}
-
-.active {
-  background-color: #4CAF50;
-}
-
-			.button{
-				background-color: #4CAF50;
-				border: none;
-				color: white;
-				padding: 12px 28px;
-				text-align: center;
-				text-decoration: none;
-				display: inline-block;
-				font-size: 16px;
-				margin: 4px 2px;
-				cursor: pointer;
-			}
-	</style>
 </head>
 <body>
 	<ul>

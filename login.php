@@ -1,53 +1,8 @@
 <html>
 	<head>
 		<title>Log In</title>
-
-		<style type="text/css">
-			body{
-				background-image: url("https://images.fridaymagazine.ae/1_2138767/imagesList_0/1270494007_main.jpg");
-				background-repeat: no-repeat;
-				background-size: cover;
-			}
-
-			.log{
-				background-color: rgb(210,205,203,0.6);
-				text-align: center;
-				padding: 50px;
-				margin: 0 auto;
-				margin-top: 50px;
-				font-size: 20px;
-				width: 400px;
-				bottom : 300px;
-                border-radius: 30px;
-			}
-
-			.button{
-				background-color: #008CBA;
-				border: none;
-				color: white;
-				padding: 12px 28px;
-				text-align: center;
-				text-decoration: none;
-				display: inline-block;
-				font-size: 16px;
-				margin: 4px 2px;
-				cursor: pointer;
-			}
-			.sai{
-			     color: red;
-				 font-size : 28px;
-				 }
-			.faculty{
-			    bottom : 270px ;
-			    color : #111111 ;
-				text-align: center;
-			}
-			.w3-myfont {
-  				font-family: "Comic Sans MS", cursive, sans-serif;
-			}
-		     			
-		</style>
-	</head>
+        <link rel="stylesheet" href="styles/login.css">
+			</head>
 
 	<body>
 		<button onclick="window.open('loginAdmin.php','_self');">Admin</button>
@@ -87,9 +42,16 @@
 				        if($user == $row["email"]) {
 				            $found = TRUE;
 				        	if($pass == $row["password"]) {
-                                $_SESSION["user"] = $row["uname"];
-				        		header("Location:projects.php");
-				        		exit();
+				        		
+				        		if($row['verified'] != 'yes'){
+				        			echo "\n<center><h3>Verify your account using the mail sent to your E-Mail.</h3></center>";
+				        		}
+				        		else{
+                                	$_SESSION["user"] = $row["uname"];
+				        			header("Location:projects.php");
+				        			exit();
+				        		}
+				        	
 				        	}
 				        	else {
 				        		echo "\n<center><h3>Incorrect password</h3></center>";
