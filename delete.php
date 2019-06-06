@@ -25,7 +25,7 @@
         if (!unlink($row['source_file']))
                 echo ("Error deleting source");
 
-        $sql = "INSERT INTO notification VALUES('".$row['user']."','".$row['title']." has been removed by Admin',CURDATE(),'unread');";
+        $sql = "INSERT INTO notification VALUES('".$row['uname']."','".$row['title']." has been removed by Admin',CURDATE(),'unread');";
         $result = $conn->query($sql);
 	}
 

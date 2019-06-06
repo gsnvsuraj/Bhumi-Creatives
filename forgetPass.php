@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>Forgot Password</title>
-    <link rel="stylesheet" href="styles/reset.css">
+    <link rel="stylesheet" href="styles/styles.css">
 	</head>
 <body>
 

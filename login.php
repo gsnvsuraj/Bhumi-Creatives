@@ -2,7 +2,8 @@
 	<head>
 		<title>Log In</title>
         <link rel="stylesheet" href="styles/login.css">
-			</head>
+        <link rel="stylesheet" type="text/css" href="styles/styles.css">
+	</head>
 
 	<body>
 		<button onclick="window.open('loginAdmin.php','_self');">Admin</button>
