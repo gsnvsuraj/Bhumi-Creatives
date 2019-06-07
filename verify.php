@@ -28,7 +28,7 @@
 
 		sleep(20);
 
-		header('location:login.php');
+		header('location:index.php');
 		exit();
 
 	?>

@@ -42,7 +42,7 @@
 		if(isset($_SESSION['user']))
 			$user = $_SESSION['user'];
 		else
-			header("Location:login.php");
+			header("Location:index.php");
 
 		$sql = "SELECT * FROM project;";
 		$result = $conn->query($sql);

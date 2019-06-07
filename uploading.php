@@ -24,7 +24,7 @@
   if(isset($_SESSION['user']))
     $user = $_SESSION['user'];
   else
-    header("Location:login.php");
+    header("Location:index.php");
 
 if(isset($_POST['submit']))
 {

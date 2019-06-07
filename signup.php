@@ -139,7 +139,7 @@
 						if($conn->query($q3))
    				  		{   
    				  			$_SESSION["user"] = $user;
-   				  			header("location:login.php");
+   				  			header("location:index.php");
    				  			exit();
    				  		}
 
@@ -161,7 +161,7 @@
 			<tr><td>Conform Password :</td><td> <input type="Password" name="conpass" placeholder="conform password" required></td></tr></table><br><br>
 			<input type="submit" name="submit" value="SignUp" class="button">
         </center>
-			<br><br>Already have an account? <a href="login.php">LogIn</a>
+			<br><br>Already have an account? <a href="index.php">LogIn</a>
 			
 		</form>
           	

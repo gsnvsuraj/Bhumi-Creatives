@@ -6,7 +6,7 @@
 	</head>
 
 	<body>
-		<button onclick="window.open('login.php','_self');">User</button>
+		<button onclick="window.open('index.php','_self');">User</button>
 		<div>
 		    <center>
 		        <h1>Welcome to Uplabs Admin</h1>

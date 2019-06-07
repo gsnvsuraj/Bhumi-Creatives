@@ -35,7 +35,7 @@
 				$sql = "UPDATE ulogin SET password='".$pass."' WHERE uname='".$user."';";
 				$result = $conn->query($sql);
 
-        		header('location:login.php');
+        		header('location:index.php');
         		exit();
 			}
 			else{
