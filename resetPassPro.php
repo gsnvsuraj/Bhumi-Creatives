@@ -20,12 +20,15 @@
 		{
 			include 'connection.php';
 
-			$pass = mysqli_real_escape_string($con, $_POST['pass']);
+			$pass = mysqli_real_escape_string($conn, $_POST['pass']);
 			$conPass = $_POST['conPass'];
 
 			if($pass == $conPass)
 			{
-				$sql = "UPDATE ulogin SET password='".$pass."' WHERE uname='".$user."';";
+				$salted = '24@fu'.$pass.'45&deo';
+				$hashed = hash('sha512', $salted);
+
+				$sql = "UPDATE ulogin SET password='".$hashed."' WHERE uname='".$user."';";
 				$result = $conn->query($sql);
 
         		$_SESSION['msg'] = "Your Password has been changed successfully.";

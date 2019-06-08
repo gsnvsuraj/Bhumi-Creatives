@@ -16,7 +16,7 @@
 		session_start();
 
 		if (isset($_POST['subEmail'])) {			
-			$email = mysqli_real_escape_string($con, $_POST['emailID']);
+			$email = mysqli_real_escape_string($conn, $_POST['emailID']);
 
 			$uni_id = rand(10,99);
 
@@ -73,7 +73,7 @@
 					    $mail->Subject = 'Reset Password';
 					    $message    = 'This mail is regarding the reset password you requested a while ago.<br>Enter the otp '.$otp.' in the browser window and then reset your Password.';
 					    $mail->Body = wordwrap($message, 70);
-					    $mail->AltBody = 'This mail is regarding the reset password you requested a while ago.Enter the otp '.$otp.' in the browser window and then reset your Password.'';
+					    $mail->AltBody = 'This mail is regarding the reset password you requested a while ago.Enter the otp '.$otp.' in the browser window and then reset your Password.';
 
 					    $mail->send();
 					    
@@ -94,7 +94,7 @@
 
 	<form action="forgetPass.php" method="post" class="log">
 		<h2>E-Mail ID</h2><br>
-		Enter your E-Mail ID : <input type="email" name="emailID" required/><br><br>
+		Enter your E-Mail ID : <input type="email" name="emailID" placeholder="Enter E-Mail" required/><br><br>
 		<input type="submit" name="subEmail" value="Submit E-Mail" class="button" />
 	</form>
 
