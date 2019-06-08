@@ -1,13 +1,12 @@
 body{
-	background-image: url("https://images.fridaymagazine.ae/1_2138767/imagesList_0/1270494007_main.jpg");
+	/*background-image:linear-gradient(rgb(0,0,255,1), rgb(0,0,255,0.2), rgb(255,0,0,0.4),rgb(255,0,0,0.7),rgb(0,150,150,0.4));;*/
+	background-image: url("../images/back.jpg");
 	background-repeat: no-repeat;
 	background-size: cover;
 }
 			
 .loginName{
-    bottom : 270px ;
-    color : #111111 ;
-	text-align: center;
+	color: white;
 }
 
 td{

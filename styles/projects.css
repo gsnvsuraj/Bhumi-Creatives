@@ -1,27 +1,69 @@
 .likebt{
     border-radius: 8px;
-    background-color: blue;
+    background-color: #186cf4;
     color: white;
     padding-bottom: 4px;
+    transform:translate(-10px,0px);
 }
 
 .unlikebt{
     border-radius: 8px;
     padding-bottom: 4px;
+    transform:translate(-10px,0px);
 }
 
 .unlikebt:hover{
-    background-color: blue;
+    background-color: #186cf4;
     color: white;
 }
 
 .likes{
-    height: 20px;
+    height: 15px;
 }
 
 .projectImg{
 	height: 250px;
 	width: 250px;
-	padding: 10px;
+	padding: 4px;
+    border-radius: 10px;
 	cursor: zoom-in;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.example{
+    padding: 15px;
+}
+
+form.example input[type=text] {
+  padding: 8px;
+  font-size: 12px;
+  border: 1px solid grey;
+  float: left;
+  width: 80%;
+  background: #f1f1f1;
+}
+
+form.example button {
+  float: left;
+  width: 20%;
+  padding: 7px;
+  background: #2196F3;
+  color: white;
+  font-size: 13px;
+  border: 1px solid grey;
+  border-left: none;
+  cursor: pointer;
+}
+
+form.example button:hover {
+  background: #0b7dda;
+}
+
+form.example::after {
+  content: "";
+  clear: both;
+  display: table;
 }
