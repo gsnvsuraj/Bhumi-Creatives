@@ -9,26 +9,13 @@
 		<button onclick="window.open('index.php','_self');">User</button>
 		<div>
 		    <center>
-		        <h1>Welcome to Uplabs Admin</h1>
+		        <h1 class="loginName">Welcome to Creatives Admin</h1>
 		    </center>
 		</div>
 		<?php
 			if(isset($_POST['submit']))
 			{
-				$servername = "localhost";
-				$username = "root";
-				$password = "";
-				$dbname = "uplabs";
-
-				// Create connection
-                session_start();
-				$conn = new mysqli($servername, $username, $password, $dbname);
-
-				// Check connection
-				if ($conn->connect_error) {
-				    die("Connection failed: " . $conn->connect_error);
-				}
-				//echo "Connected successfully";
+				include 'connection.php';
 
 				session_start();
 
@@ -45,7 +32,7 @@
 				        if($user == $row["uname"]) {
 				            $found = TRUE;
 				        	if($pass == $row["password"]) {
-                                $_SESSION["user"] = $row["uname"];
+                                $_SESSION["user"] = "admin";
                                 
 				        		header("Location:projectsAdmin.php");
 				        		exit();

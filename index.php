@@ -3,67 +3,71 @@
 		<title>Log In</title>
         <link rel="stylesheet" href="styles/login.css">
         <link rel="stylesheet" type="text/css" href="styles/styles.css">
+        <link rel="icon" type="image/ico" href="images/logo.png" />
 	</head>
 
 	<body>
 		<button onclick="window.open('loginAdmin.php','_self');">Admin</button>
 		<div>
 		    <center>
-		        <h1>Welcome to Uplabs</h1>
+		        <h1 class="loginName">Welcome to Creatives</h1>
 		    </center>
 		</div>
+		
 		<?php
 			if(isset($_POST['submit']))
 			{
-				$servername = "localhost";
-				$username = "root";
-				$password = "";
-				$dbname = "uplabs";
-
-				// Create connection
-				$conn = new mysqli($servername, $username, $password, $dbname);
-
-				// Check connection
-				if ($conn->connect_error) {
-				    die("Connection failed: " . $conn->connect_error);
-				}
+				include 'connection.php';
 				
 				session_start();
 
 				$sql = "SELECT * FROM ulogin";
 				$result = $conn->query($sql);
 
-				$user = $_POST["user"];
-				$pass = $_POST["pass"];
+				$user = mysqli_real_escape_string($conn, $_POST['user']);
+				$pass = mysqli_real_escape_string($conn, $_POST['pass']);
 
-				if ($result->num_rows > 0) {
-				    // output data of each row
+				if ($result->num_rows > 0)
+				{
+				   
 				    $found = FALSE;
-				    while($row = $result->fetch_assoc()) {
+				    while($row = $result->fetch_assoc())
+				    {
 				        if($user == $row["email"]) {
 				            $found = TRUE;
-				        	if($pass == $row["password"]) {
+
+				            $salted = '24@fu'.$pass.'45&deo';
+							$hashed = hash('sha512', $salted);
+				        	
+				        	if($hashed == $row["password"])
+				        	{
 				        		
-				        		if($row['verified'] != 'yes'){
+				        		if($row['verified'] != 'yes')
+				        		{
 				        			echo "\n<center><h3>Verify your account using the mail sent to your E-Mail.</h3></center>";
 				        		}
-				        		else{
+				        		else
+				        		{
                                 	$_SESSION["user"] = $row["uname"];
 				        			header("Location:projects.php");
 				        			exit();
 				        		}
 				        	
 				        	}
-				        	else {
+				        	else
+				        	{
 				        		echo "\n<center><h3>Incorrect password</h3></center>";
 				        	}
 				        }
 				    }
-				    if( $found == FALSE ) {
-				    	echo "\n<center><h3>Invalid User. Try again!!</h3></center>";
+				    if( $found == FALSE )
+				    {
+				    	echo "\n<center><h3>This E-Mail does not exist. Try signing up!!</h3></center>";
 				    }
 
-				} else {
+				}
+				else
+				{
 				    echo "0 results";
 				}
 				$conn->close();

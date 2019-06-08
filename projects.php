@@ -4,38 +4,16 @@
 	<title>Projects</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
  	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+ 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-	<link rel="stylesheet" type="text/css" href="styles/projects.css">
 	<link rel="stylesheet" type="text/css" href="styles/styles.css">
-
+	<link rel="stylesheet" type="text/css" href="styles/projects.css">
 </head>
 <body>
-	<ul>
-  		<li><a class="active" href="projects.php">Home</a></li>
-  		<li><a href="myProjects.php">My Projects</a></li>
- 		
- 		<li><a href="uploading.php">Upload</a></li>
- 		<li><form action='filtered.php' method='post'><a><input type='text' name='filter' placeholder='Filter by tags' required/>
-            <input type='submit' value='Filter' /></a>
- 		</form></li>
-  		<li style="float:right"><a href="logout.php">LogOut</a></li>
-  		<li style="float:right"><a href="notification.php">Notification</a></li>
-	</ul>
-
 
 	<?php
-		$servername = "localhost";
-		$username = "root";
-		$password = "";
-		$dbname = "uplabs";
-        
-		// Create connection
-		$conn = new mysqli($servername, $username, $password, $dbname);
-
-		// Check connection
-		if ($conn->connect_error) {
-			die("Connection failed: " . $conn->connect_error);
-		}
+		include 'header.php';
+		include 'connection.php';
     
         session_start();
 
@@ -48,12 +26,14 @@
 		$result = $conn->query($sql);
 
 		if ($result->num_rows > 0){
-			$id=0;
-			echo "<table><tr>";
+			echo "<center><form class='example' action='filtered.php' method='POST' style='margin:auto;max-width:300px'>
+  <input type='text' placeholder='Search..' name='filter' required>
+  <button type='submit'><i class='fa fa-search'></i></button>
+</form></center>";
 			while($row = $result->fetch_assoc()){
 				$title = $row["title"];
 				$url = $row["image"];
-				echo "<div class='w3-btn w3-col m4 l3'><div class='w3-display-container'><a onclick='redir()'><img name='".$title."' class='projectImg w3-hover-opacity' id='".$row['pid']."' src='".$url."' alt='Not able to display' /><div class='w3-display-topright w3-padding'>";
+				echo "<div class='w3-btn w3-col m4 l3'><div class='w3-display-container'><a onclick='redir()'><img name='".$title."' class='projectImg' id='".$row['pid']."' src='".$url."' alt='Not able to display' /><div class='w3-display-topright w3-padding'>";
                 
                 $q1 = "SELECT * FROM likes WHERE pid='".$row['pid']."' AND uname='".$user."';";
                 $rs1 = $conn->query($q1);
@@ -73,6 +53,7 @@
 		else{
 			echo "<h3>No Projects to Display.</h3>";
 		}
+		$conn->close();
 	?>
 	
 

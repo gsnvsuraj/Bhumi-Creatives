@@ -10,30 +10,17 @@
 	
 </head>
 <body>
-	<ul>
-  		<li><a class="active" href="projectsAdmin.php">Home</a></li>
-  		<li><a href="approval.php">Requets</a></li>
-  		<li><a><form action='filteredAdmin.php' method='post'><input type='text' name='filter' placeholder='Filter by tags' required/>
-            <input type='submit' value='Filter' />
- 		</form></a></li>
-  		<li style="float:right"><a href="logout.php">LogOut</a></li>
-  		<li style="float:right"><a href="notificationAdmin.php">All Notifications</a></li>
-	</ul>
-
 
 	<?php
-		$servername = "localhost";
-		$username = "root";
-		$password = "";
-		$dbname = "uplabs";
+		include 'headerAdmin.php';
+		include 'connection.php';
 
-		// Create connection
-		$conn = new mysqli($servername, $username, $password, $dbname);
+		session_start();
 
-		// Check connection
-		if ($conn->connect_error) {
-			die("Connection failed: " . $conn->connect_error);
-		}
+		if(isset($_SESSION['user']) && $_SESSION['user'] == "admin")
+			$user = $_SESSION['user'];
+		else
+			header("Location:loginAdmin.php");
     
         $search = strtolower($_POST['filter']);
         $search = str_replace(" ",",",$search);
@@ -42,10 +29,11 @@
 		$sql = "SELECT * FROM project;";
 		$result = $conn->query($sql);
 
-		if ($result->num_rows > 0){
-			$id=0;
-			echo "<table><tr>";
-			while($row = $result->fetch_assoc()){
+		if ($result->num_rows > 0)
+		{
+			$found = 0;
+			while($row = $result->fetch_assoc())
+			{
 				$title = $row["title"];
 				$url = $row["image"];
                 $tags = strtolower($row['tags']);
@@ -66,6 +54,7 @@
 						echo "<form method='post' action='delete.php?pid=".$row['pid']."'><input class='w3-button w3-blue w3-round-large' type='submit' name='delete' value='Delete'></form></center></a></div>";
                         
                         $flag = 1;
+                        $found = 1;
                         break;
                     }
                     }
@@ -74,15 +63,18 @@
 			     }
             
             }
+            if( $found == 0 )
+            	echo "<center><h4>There's no result for the filter tags. Try something else :)</h4></center>";
 		}
 		else{
 			echo "<h3>No Projects to Display.</h3>";
 		}
+		$conn->close();
 	?>
 
 	<script type='text/javascript'>
 		function redir() {
-			window.open('imgDisplay.php?pid='+event.srcElement.id,'_self');
+			window.open('imgDisplayAdmin.php?pid='+event.srcElement.id,'_self');
 		}
 	</script>
 

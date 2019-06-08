@@ -4,30 +4,23 @@
 	<title>Reset Password</title>
 
 	<link rel="stylesheet" type="text/css" href="styles/styles.css">
+	<link rel="icon" type="image/ico" href="images/logo.png" />
 </head>
 <body>
 
 	<?php
+		session_start();
+
+		if(isset($_SESSION['user']))
+			$user = $_SESSION['user'];
+		else
+			header("Location:index.php");
+
 		if(isset($_POST['subPass']))
 		{
-			$servername = "localhost";
-			$username = "root";
-			$password = "";
-			$dbname = "uplabs";
+			include 'connection.php';
 
-			// Create connection
-			$conn = new mysqli($servername, $username, $password, $dbname);
-
-			// Check connection
-			if ($conn->connect_error) {
-				die("Connection failed: " . $conn->connect_error);
-			}
-
-			session_start();
-
-			$user = $_SESSION['user'];
-
-			$pass = $_POST['pass'];
+			$pass = mysqli_real_escape_string($con, $_POST['pass']);
 			$conPass = $_POST['conPass'];
 
 			if($pass == $conPass)
@@ -42,6 +35,7 @@
 			else{
 				echo "<center><h3>Both Passwords not same.Try again !!</h3></center>";
 			}
+			$conn->close();
 		}
 
 	?>
