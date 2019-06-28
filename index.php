@@ -1,91 +1,23 @@
+<!--
+	Title: Redirects to src/index.php
+	Description: A redirection page to make some room for a home page
+-->
 <html>
-	<head>
-		<title>Log In</title>
-        <link rel="stylesheet" href="styles/login.css">
-        <link rel="stylesheet" type="text/css" href="styles/styles.css">
-        <link rel="icon" type="image/ico" href="images/logo.png" />
-	</head>
 
-	<body>
-		<button onclick="window.open('loginAdmin.php','_self');">Admin</button>
-		<div>
-		    <center>
-		        <h1 class="loginName">Welcome to Creatives</h1>
-		    </center>
-		</div>
-		
-		<?php
-			if(isset($_POST['submit']))
-			{
-				include 'connection.php';
-				
-				session_start();
+<head>
+  <meta charset="utf-8">
+  <title>You're being Redirected.....</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="author" content="Suraj,Mahesh,Vignesh,Krishnakanth">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="assets/img/logo.png" type="image/png">
+  <!--<meta http-equiv="refresh" content="0"; url="src/index.php" />-->
+</head>
 
-				$sql = "SELECT * FROM ulogin";
-				$result = $conn->query($sql);
+<body>
+  <p>You're being redirected....</p>
+  <p><a href="src/index.php">Click here if you're not redirected automatically</a></p>
 
-				$user = mysqli_real_escape_string($conn, $_POST['user']);
-				$pass = mysqli_real_escape_string($conn, $_POST['pass']);
+</body>
 
-				if ($result->num_rows > 0)
-				{
-				   
-				    $found = FALSE;
-				    while($row = $result->fetch_assoc())
-				    {
-				        if($user == $row["email"]) {
-				            $found = TRUE;
-
-				            $salted = '24@fu'.$pass.'45&deo';
-							$hashed = hash('sha512', $salted);
-				        	
-				        	if($hashed == $row["password"])
-				        	{
-				        		
-				        		if($row['verified'] != 'yes')
-				        		{
-				        			echo "\n<center><h3>Verify your account using the mail sent to your E-Mail.</h3></center>";
-				        		}
-				        		else
-				        		{
-                                	$_SESSION["user"] = $row["uname"];
-				        			header("Location:projects.php");
-				        			exit();
-				        		}
-				        	
-				        	}
-				        	else
-				        	{
-				        		echo "\n<center><h3>Incorrect password</h3></center>";
-				        	}
-				        }
-				    }
-				    if( $found == FALSE )
-				    {
-				    	echo "\n<center><h3>This E-Mail does not exist. Try signing up!!</h3></center>";
-				    }
-
-				}
-				else
-				{
-				    echo "0 results";
-				}
-				$conn->close();
-			}
-		?>
-
-		 
-		<form class="log"  action="index.php" method="POST">
-			 <h2 class="login">LOGIN</h2>
-		 
-			E-Mail ID : <input type="text" name="user" placeholder="Enter email" required><br><br>
-			Password : <input type="Password" name="pass" placeholder="Enter password" required><br><br>
-			<input type="submit" name="submit" value="LogIn" class="button">
-
-			<br><br><a href="forgetPass.php">Forgot Password?</a>
-			<br><br>Don't have an account? <a href="signup.php">SignUp</a>
-			
-		</form>
-          	
-	</body>
 </html>
